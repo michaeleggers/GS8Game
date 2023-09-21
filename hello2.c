@@ -2,7 +2,7 @@
 #include <default.c>
 
 #define WALK_SPEED        20
-#define MOUSE_SENSITIVITY 10
+#define MOUSE_SENSITIVITY 5
 #define ACCELERATION      1.0
 
 
@@ -44,7 +44,7 @@ function MoveCamera() {
 		if (key_s) {
 			g_Velocity -= time_step*ACCELERATION*ACCELERATION;			
 		}
-		if (!key_s && !key_w) {
+		if ( (!key_s && !key_w) || (key_s && key_w)) {
 			if (g_Velocity > 0.0) {
 				g_Velocity -= time_step*ACCELERATION*ACCELERATION;
 			}
@@ -52,7 +52,8 @@ function MoveCamera() {
 				g_Velocity += time_step*ACCELERATION*ACCELERATION;
 			}			
 		}		
-		g_Velocity = clamp(g_Velocity, -5.0, 5.0);
+			
+		g_Velocity = clamp(g_Velocity, -2.0, 2.0);
 		float xCmp = time_step*g_Velocity*WALK_SPEED*forward.x;
 		float yCmp = time_step*g_Velocity*WALK_SPEED*forward.y;
 		newPos = vector(
@@ -73,7 +74,7 @@ function MoveCamera() {
 		if (key_d) {
 			g_VelocitySide -= time_step*ACCELERATION*ACCELERATION;	
 		}
-		if (!key_a && !key_d) {
+		if ( (!key_a && !key_d) || (key_a && key_d) ) {
 			if (g_VelocitySide > 0.0) {
 				g_VelocitySide -= time_step*ACCELERATION;
 			}
@@ -81,7 +82,7 @@ function MoveCamera() {
 				g_VelocitySide += time_step*ACCELERATION;
 			}			
 		}
-		g_VelocitySide = clamp(g_VelocitySide, -5.0, 5.0);
+		g_VelocitySide = clamp(g_VelocitySide, -2.0, 2.0);
 		vec_scale(right, time_step*g_VelocitySide*WALK_SPEED);
 
 		vec_add(newPos, right);
