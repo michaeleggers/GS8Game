@@ -46,39 +46,47 @@ function MoveCamera() {
 		}
 		if (!key_s && !key_w) {
 			if (g_Velocity > 0.0) {
-				g_Velocity -= time_step*ACCELERATION;
+				g_Velocity -= time_step*ACCELERATION*ACCELERATION;
 			}
 			if (g_Velocity < 0.0) {
-				g_Velocity += time_step*ACCELERATION;
+				g_Velocity += time_step*ACCELERATION*ACCELERATION;
 			}			
 		}		
 		g_Velocity = clamp(g_Velocity, -5.0, 5.0);
-		float xCmp = camera.x + time_step*g_Velocity*WALK_SPEED*forward.x;
-		float yCmp = camera.y + time_step*g_Velocity*WALK_SPEED*forward.y;
+		float xCmp = time_step*g_Velocity*WALK_SPEED*forward.x;
+		float yCmp = time_step*g_Velocity*WALK_SPEED*forward.y;
 		newPos = vector(
 			xCmp,
 			yCmp,
-			camera.z
+			0
 		);		
-		vec_set(camera.x, newPos);
+		
 		
 		// Straving			
 		
 		VECTOR right;
 		VECTOR* up = vector(0, 0, 1);			
 		vec_cross(&right, up, forward);
-		if (key_a) {
+		if (key_a) {			
 			g_VelocitySide += time_step*ACCELERATION*ACCELERATION;
-			g_VelocitySide = clamp(g_VelocitySide, 0.0, 5.0);
-			vec_scale(right, time_step*g_VelocitySide*WALK_SPEED);
-			vec_add(camera.x, right);
 		}
 		if (key_d) {
-			g_VelocitySide += time_step*ACCELERATION*ACCELERATION;
-			g_VelocitySide = clamp(g_VelocitySide, 0.0, 5.0);
-			vec_scale(right, -time_step*g_VelocitySide*WALK_SPEED);
-			vec_add(camera.x, right);
+			g_VelocitySide -= time_step*ACCELERATION*ACCELERATION;	
 		}
+		if (!key_a && !key_d) {
+			if (g_VelocitySide > 0.0) {
+				g_VelocitySide -= time_step*ACCELERATION;
+			}
+			if (g_VelocitySide < 0.0) {
+				g_VelocitySide += time_step*ACCELERATION;
+			}			
+		}
+		g_VelocitySide = clamp(g_VelocitySide, -5.0, 5.0);
+		vec_scale(right, time_step*g_VelocitySide*WALK_SPEED);
+
+		vec_add(newPos, right);
+		vec_add(camera.x, newPos);		
+		//vec_set(camera.x, newPos);
 		
 				
 //		wait(1);
