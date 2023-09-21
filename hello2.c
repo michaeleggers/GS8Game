@@ -2,7 +2,8 @@
 #include <default.c>
 
 #define WALK_SPEED        20
-#define MOUSE_SENSITIVITY 5
+#define SLOW_WALK_SPEED   WALK_SPEED/2.0
+#define MOUSE_SENSITIVITY 10
 #define ACCELERATION      2.0
 #define MAX_ACCELERATION  6.0
 #define MAX_ROLL_DEG      2.0
@@ -56,9 +57,13 @@ function MoveCamera() {
 			}			
 		}		
 			
+		float walkSpeed = WALK_SPEED;
+		if (key_shift) {
+			walkSpeed = SLOW_WALK_SPEED;
+		}			
 		g_Velocity = clamp(g_Velocity, -MAX_ACCELERATION, MAX_ACCELERATION);
-		float xCmp = time_step*g_Velocity*WALK_SPEED*forward.x;
-		float yCmp = time_step*g_Velocity*WALK_SPEED*forward.y;
+		float xCmp = time_step*g_Velocity*walkSpeed*forward.x;
+		float yCmp = time_step*g_Velocity*walkSpeed*forward.y;
 		newPos = vector(
 			xCmp,
 			yCmp,
@@ -94,10 +99,14 @@ function MoveCamera() {
 		}
 		g_VelocitySide = clamp(g_VelocitySide, -MAX_ACCELERATION, MAX_ACCELERATION);
 		g_RollDeg = clamp(g_RollDeg, -MAX_ROLL_DEG, MAX_ROLL_DEG);
-		vec_scale(right, time_step*g_VelocitySide*WALK_SPEED);
+		vec_scale(right, time_step*g_VelocitySide*walkSpeed);
 
 		vec_add(newPos, right);
-		vec_add(camera.x, newPos);		
+		float walkDistance = vec_length(newPos);
+		if (walkDistance > 0.000001) {
+			vec_add(camera.x, newPos);
+		}
+		
 		camera.roll = g_RollDeg;
 		//vec_set(camera.x, newPos);
 		
@@ -125,7 +134,7 @@ void main()
 
 	//camera->flags |= SHOW;
 	camera->x = -1500;
-	camera->z = 300;	
+	camera->z = 150;	
 	    
     // Create the cube
     VECTOR* pos = vector(-100, 0, 150);
