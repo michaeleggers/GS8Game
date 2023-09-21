@@ -98,12 +98,15 @@ function MoveCamera() {
 			}
 		}
 		g_VelocitySide = clamp(g_VelocitySide, -MAX_ACCELERATION, MAX_ACCELERATION);
+		if ( abs(g_VelocitySide) < 0.00001 ) {
+			g_VelocitySide = 0;
+		}
 		g_RollDeg = clamp(g_RollDeg, -MAX_ROLL_DEG, MAX_ROLL_DEG);
 		vec_scale(right, time_step*g_VelocitySide*walkSpeed);
 
 		vec_add(newPos, right);
 		float walkDistance = vec_length(newPos);
-		if (walkDistance > 0.000001) {
+		if (walkDistance > 0.00001) {
 			vec_add(camera.x, newPos);
 		}
 		
