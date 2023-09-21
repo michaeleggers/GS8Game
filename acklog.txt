@@ -1,0 +1,52 @@
+Log of A8 Engine 8.47.1 run at Tue Sep 19 21:16:51 2023
+msegg on Windows NT/2000/XP version 6.2 Build 9200
+Options "C:\Program Files (x86)\GStudio8\projects\hello\GEDEditorTempScript.c" -diag -nwnd -wnd -eq 
+App: C:\Program Files (x86)\GStudio8\GED.exe in C:\PROGRAM FILES (X86)\GSTUDIO8\PROJECTS\HELLO\
+
+MM mixer opened
+DSOUND device opened
+DI interface opened
+Start Window opened(c) Conitec - www.3dgamestudio.com
+A8 Engine - Free Edition V8.47.1 - Mar  9 2016
+Development version
+Registered to: Free Version
+
+Mouse found
+Headphones (High Definition Audio Device) opened
+NVIDIA GeForce RTX 2070 pure T&L device 1ff9 detected
+D3D device NVIDIA GeForce RTX 2070 1ff9 selected.
+ackphysX.dll opened
+Compiling GEDEDITORTEMPSCRIPT.C - [Esc] to abort.....
+PATH C:\Program Files (x86)\GStudio8\code\
+PATH C:\Program Files (x86)\GStudio8\templates\images\............. 0.073 sec
+Running GEDEDITORTEMPSCRIPT.C.
+2 objects
+PATH C:\Program Files (x86)\GStudio8\code\
+PATH C:\Program Files (x86)\GStudio8\templates\images\
+Main started at 47.987
+def_startup started
+mtlfx_startup started
+D3D_Init Window: 720x480 -> Window: 1x720x480x32
+Video memory found: 4093 MB
+Main loop at 48.028....
+1st frame with 4093 MB at 48.028
+PATH c:\program files (x86)\gstudio8\projects\hello\
+PATH C:\Program Files (x86)\GStudio8\
+PATH C:\Program Files (x86)\GStudio8\GED\modelle\
+LevelInit at 48.063
+PATH C:\Program Files (x86)\GStudio8\projects\hello\
+0 entities 0 cameras 3 lights 0 sounds 0 paths
+ 2 lmaps 5 textures 28 meshes 28 submeshes 476 faces...ok
+LevelReady at 48.086
+D3D_Resize Window: 1103x964 -> Window: 1x1103x964x32
+D3D_Resize Window: 290x555 -> Window: 1x290x555x32
+D3D_Resize Window: 1103x964 -> Window: 1x1103x964x32
+PATH C:\Program Files (x86)\GStudio8\projects\hello\
+Close level,DLL,objects
+Free input,funcs,panels,defs,syns,views,strings,vars..ok
+Free sounds,bmaps,fonts,hash,defs1,script..ok
+Close dx,multimedia,D3D,engine,nexus..ok
+A8 Engine - Free Edition V8.47.1 - Mar  9 2016
+(c) Conitec - www.3dgamestudio.com
+Registered to: Free Version
+Close window at 151.955
